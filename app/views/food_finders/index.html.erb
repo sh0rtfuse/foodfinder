@@ -7,6 +7,60 @@
 		var counter= 0;
 		animate(counter);
 	};
+
+	// Takes in rating. Returns image path.
+	// Bit a Hack. Moved JS function to view so I could embed Ruby
+	function getRatingsPath(rating) {
+		var path = "";
+
+		switch(rating) {
+			case 0:
+				path = '<%= image_tag("stars/small_0@2x.png") %>' ;
+				// path = "/assets/stars/small_0@2x.png";
+				break;
+			case 1:
+				path = '<%= image_tag("stars/small_1@2x.png") %>' ;
+				// path = "/assets/stars/small_1@2x.png";
+				break;
+			case 1.5:
+				path = '<%= image_tag("stars/small_1_half@2x.png") %>' ;
+				// path = "/assets/stars/small_1_half@2x.png";
+				break;
+			case 2:
+				path = '<%= image_tag("stars/small_2@2x.png") %>' ;
+				// path = "/assets/stars/small_2@2x.png";
+				break;
+			case 2.5:
+				path = '<%= image_tag("stars/small_2_half@2x.png") %>' ;
+				// path = "/assets/stars/small_2_half@2x.png";
+				break;
+			case 3:
+				path = '<%= image_tag("stars/small_3@2x.png") %>' ;
+				// path = "/assets/stars/small_3@2x.png";
+				break;
+			case 3.5:
+				path = '<%= image_tag("stars/small_3_half@2x.png") %>' ;
+				// path = "/assets/stars/small_3_half@2x.png";
+				break;
+			case 4:
+				path = '<%= image_tag("stars/small_4@2x.png") %>' ;
+				// path = "/assets/stars/small_4@2x.png";
+				break;
+			case 4.5:
+				path = '<%= image_tag("stars/small_4_half@2x.png") %>' ;
+				// path = "/assets/stars/small_4_half@2x.png";
+				break;
+			case 5:
+				path = '<%= image_tag("stars/small_5@2x.png") %>' ;
+				// path = "/assets/stars/small_5@2x.png";
+				break;
+			default:
+				path = '<%= image_tag("stars/small_0@2x.png") %>' ;
+				// path = "/assets/stars/small_0@2x.png";		//default is 0 rating;
+				break;
+		}
+		return path;
+	}
 </script>
 
 <div class="load-page" style="padding: 5em;">
@@ -36,7 +90,7 @@
 					<div class="card-block">
 						<h4 id="result-title" class="card-title">Restaurant Title</h4>
 						<p class="card-text"><small id="result-cats" class="text-muted"></small></p>
-						<img id="result-ratings" src="">
+						<div id="result-ratings"></div>	<!-- Empty DIV to insert image -->
 						<p class="card-text"><small id="result-reviews" class="text-muted"></small></p>
 						<button id="result-yes" type="button" class="btn btn-success">YASSS</button>
 						<button id="result-next" type="button" class="btn btn-danger">Next...</button>

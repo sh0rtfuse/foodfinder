@@ -117,7 +117,7 @@ function showCard(businesses, counter) {
 	$('#result-title').text(businesses[counter].name);
 	$('#result-url').attr("href", businesses[counter].url);
 	$('#result-reviews').text("Based on " + businesses[counter].review_count + " Reviews");
-	$('#result-ratings').attr("src", getRatingsPath(businesses[counter].rating)); 
+	$('#result-ratings').prepend(getRatingsPath(businesses[counter].rating));  
 	$('#result-cats').text(getCategories(businesses[counter].categories));
 
 	//show card
@@ -142,48 +142,58 @@ function getCategories(categories) {
 
 	return string;
 }
-// Takes in rating. Returns image path.
-function getRatingsPath(rating) {
-	var path = "";
+// // Takes in rating. Returns image path. Moved to view so I could embed Ruby
+// function getRatingsPath(rating) {
+// 	var path = "";
 
-	switch(rating) {
-		case 0:
-			path = "/assets/stars/small_0@2x.png";
-			break;
-		case 1:
-			path = "/assets/stars/small_1@2x.png";
-			break;
-		case 1.5:
-			path = "/assets/stars/small_1_half@2x.png";
-			break;
-		case 2:
-			path = "/assets/stars/small_2@2x.png";
-			break;
-		case 2.5:
-			path = "/assets/stars/small_2_half@2x.png";
-			break;
-		case 3:
-			path = "/assets/stars/small_3@2x.png";
-			break;
-		case 3.5:
-			path = "/assets/stars/small_3_half@2x.png";
-			break;
-		case 4:
-			path = "/assets/stars/small_4@2x.png";
-			break;
-		case 4.5:
-			path = "/assets/stars/small_4_half@2x.png";
-			break;
-		case 5:
-			path = "/assets/stars/small_5@2x.png";
-			break;
-		default:
-			path = "/assets/stars/small_0@2x.png";		//default is 0 rating;
-			break;
-	}
-
-	return path;
-}
+// 	switch(rating) {
+// 		case 0:
+// 			path = '<%= image_tag("stars/small_0@2x.png") %>' ;
+// 			// path = "/assets/stars/small_0@2x.png";
+// 			break;
+// 		case 1:
+// 			path = '<%= image_tag("stars/small_1@2x.png") %>' ;
+// 			// path = "/assets/stars/small_1@2x.png";
+// 			break;
+// 		case 1.5:
+// 			path = '<%= image_tag("stars/small_1_half@2x.png") %>' ;
+// 			// path = "/assets/stars/small_1_half@2x.png";
+// 			break;
+// 		case 2:
+// 			path = '<%= image_tag("stars/small_2@2x.png") %>' ;
+// 			// path = "/assets/stars/small_2@2x.png";
+// 			break;
+// 		case 2.5:
+// 			path = '<%= image_tag("stars/small_2_half@2x.png") %>' ;
+// 			// path = "/assets/stars/small_2_half@2x.png";
+// 			break;
+// 		case 3:
+// 			path = '<%= image_tag("stars/small_3@2x.png") %>' ;
+// 			// path = "/assets/stars/small_3@2x.png";
+// 			break;
+// 		case 3.5:
+// 			path = '<%= image_tag("stars/small_3_half@2x.png") %>' ;
+// 			// path = "/assets/stars/small_3_half@2x.png";
+// 			break;
+// 		case 4:
+// 			path = '<%= image_tag("stars/small_4@2x.png") %>' ;
+// 			// path = "/assets/stars/small_4@2x.png";
+// 			break;
+// 		case 4.5:
+// 			path = '<%= image_tag("stars/small_4_half@2x.png") %>' ;
+// 			// path = "/assets/stars/small_4_half@2x.png";
+// 			break;
+// 		case 5:
+// 			path = '<%= image_tag("stars/small_5@2x.png") %>' ;
+// 			// path = "/assets/stars/small_5@2x.png";
+// 			break;
+// 		default:
+// 			path = '<%= image_tag("stars/small_0@2x.png") %>' ;
+// 			// path = "/assets/stars/small_0@2x.png";		//default is 0 rating;
+// 			break;
+// 	}
+// 	return path;
+// }
 // Fisher-Yates to shuffle array contents
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
