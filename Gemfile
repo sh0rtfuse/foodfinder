@@ -64,3 +64,6 @@ end
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem "http"
+
+# Routing Help
+gem "js-routes"

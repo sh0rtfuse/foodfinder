@@ -16,7 +16,7 @@ BUSINESS_PATH = "/v3/businesses/"  # trailing / because we append the business i
 TOKEN_PATH = "/oauth2/token"
 GRANT_TYPE = "client_credentials"
 
-class FoodFinderController < ApplicationController
+class FoodFindersController < ApplicationController
 	@@latitude = nil
 	@@longitude = nil
 

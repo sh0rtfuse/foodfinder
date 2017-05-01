@@ -16,7 +16,8 @@ function sendPosition(position) {
 	// });
 
 	$.ajax({
-		url:'/food_finder',
+		// url:'/food_finder',
+		url: Routes.food_finders_path(),
 		type:'POST',
 		dataType:'json',
 		data:{
@@ -25,7 +26,8 @@ function sendPosition(position) {
 		},
 		success:function(data){
 		    //pulls JSON with Business Info from create method
-			$.getJSON('/food_finder/results.json', function(data) {
+			// $.getJSON('/food_finders/results.json', function(data) {
+			$.getJSON(Routes.food_finder_path("results", {format: 'json'}), function(data) {
 	  			console.log(data);
 	  			$('.load-page').remove();
 	  			display(data);
