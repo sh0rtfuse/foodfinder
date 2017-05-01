@@ -117,6 +117,7 @@ function showCard(businesses, counter) {
 	$('#result-title').text(businesses[counter].name);
 	$('#result-url').attr("href", businesses[counter].url);
 	$('#result-reviews').text("Based on " + businesses[counter].review_count + " Reviews");
+	$('#result-ratings').empty();																//clear old rating before display new one
 	$('#result-ratings').prepend(getRatingsPath(businesses[counter].rating));  
 	$('#result-cats').text(getCategories(businesses[counter].categories));
 
