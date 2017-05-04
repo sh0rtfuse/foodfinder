@@ -6,7 +6,7 @@ require "optparse"
 # Place holders for Yelp Fusion's OAuth 2.0 credentials. Grab them
 # from https://www.yelp.com/developers/v3/manage_app
 CLIENT_ID = "LSaHQC1e5AnvvQ-5HPm6vA"
-CLIENT_SECRET = "Qlpm8kNPxs8Z7ORocbBnk0VhEyfSYwrgHEdwvPSuEADAQFkrZnYhxnbwF1aDbxYp"
+CLIENT_SECRET = ENV['YELP_API_SECRET']
 
 
 # Constants, do not change these

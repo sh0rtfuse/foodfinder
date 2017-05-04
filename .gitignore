@@ -3,3 +3,6 @@ config/secrets.yml
 tmp/
 
 log/
+
+# Ignore application configuration
+/config/application.yml

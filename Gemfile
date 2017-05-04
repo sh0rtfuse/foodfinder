@@ -67,3 +67,6 @@ gem "http"
 
 # Routing Help
 gem "js-routes"
+
+# Added for API Key Management
+gem 'figaro'

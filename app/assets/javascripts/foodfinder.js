@@ -98,11 +98,11 @@ function display(data) {
 	});
 
 	// Support for swapping to accept/reject recommendation
-	var card = document.getElementById("result-card");
-	var gestures = new Hammer(card);
-	gestures.on('swipe', function(ev) {
-		console.log(ev);
-	});
+	// var card = document.getElementById("result-card");
+	// var gestures = new Hammer(card);
+	// gestures.on('swipe', function(ev) {
+	// 	console.log(ev);
+	// });
 }
 function reject() {
 
