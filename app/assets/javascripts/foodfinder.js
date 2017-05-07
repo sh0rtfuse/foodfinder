@@ -99,10 +99,44 @@ function display(data) {
 
 	// Support for swapping to accept/reject recommendation
 	var card = document.getElementById("result-card");
-	var gestures = new Hammer(card);
-	gestures.on('swipe', function(ev) {
-		console.log(ev);
-	});
+	$card = jQuery(card);
+
+	if(card) {
+		var gestures = new Hammer(card);
+		// Swipe Left for YASSS
+		gestures.on('swipeleft', function(ev) {
+			// Lat, Long, and Name of business
+			var lat = businesses[counter].coordinates.latitude;
+			var long = businesses[counter].coordinates.longitude;
+			var name = businesses[counter].name.split(' ').join('+');
+
+			window.open(getMapsURL(lat, long, name), "_blank");
+		});
+		// Swipe Right for Next
+		gestures.on('swiperight', function(ev) {
+			counter++;
+			if(counter < businesses.length) {
+				showCard(businesses, counter);
+			} else {
+				//what to do when there are no more results to show
+				// shuffles and re-displays same cards
+				counter = 0;
+				businesses = shuffle(businesses);
+				showCard(businesses, counter);
+			}
+		});
+
+		// Moves card with swipe. Possible Enhancement. Requires Velocity.js
+		// var x = 0;
+		// var y = 0;
+		// gestures.on('panmove', function(ev) {
+		// 	console.log(ev);
+		// 	var dX = x + ev.deltaX;
+		// 	var dY = y + ev.deltaY;
+		// 	$.Velocity.hook($card, 'translateX', dX + 'px');
+		// 	$.Velocity.hook($card, 'translateY', dY + 'px');
+		// });
+	}
 }
 function reject() {
 
@@ -122,7 +156,7 @@ function showCard(businesses, counter) {
 	$('#result-cats').text(getCategories(businesses[counter].categories));
 
 	//show card
-	$('.result-card').attr("hidden", false); 
+	$('#result-card').attr("hidden", false); 
 }
 // Takes in Lat/Long of location and name. Returns URL in GMaps Scheme
 function getMapsURL(latitude, longitude, name) {
