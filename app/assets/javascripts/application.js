@@ -16,4 +16,6 @@
 //= require tether
 //= require bootstrap
 //= require js-routes
+//= require hammer.min
+//= require velocity.min
 //= require_tree .
