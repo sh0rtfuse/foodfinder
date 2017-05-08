@@ -3,9 +3,6 @@
 	//See foodfinder.js
 	window.onload = function() {
 		getLocation();
-
-		var counter= 0;
-		animate(counter);
 	};
 
 	// Takes in rating. Returns image path.
@@ -63,16 +60,27 @@
 	}
 </script>
 
-<div class="load-page" style="padding: 5em;">
+<div class="container">
+	<div class="alert alert-info" id="loc-notify" role="alert">
+		<strong>Locate Request:</strong> Please accept location request to see delicious yums near you.
+	</div>
+	<div class="alert alert-danger" id="loc-denied" role="alert" hidden>
+		<strong>Location Request Denied: </strong> Please reload and accept the location request to see delicious yums. :)
+	</div>
+	<div class="alert alert-danger" id="loc-no-support" role="alert" hidden>
+		<strong>Your browser does not support Geolocation.</strong> :(
+	</div>
+</div>
+
+<div class="load-page" style="padding: 5em;" hidden>
 	<div class="card text-center">
+		<div class="card-block">
+			<h4 class="card-title">Requests being generated...</h4>
+		</div>
 		<div style="padding: 1em;">
 			<div class="progress">
-				<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+				<div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
-		</div>
-		<div class="card-block">
-			<h4 class="card-title">Accept Location Request</h4>
-			<p class="card-text">Requests being generated...</p>
 		</div>
 	</div>
 </div>

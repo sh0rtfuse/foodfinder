@@ -1,19 +1,28 @@
 function getLocation() {
+	// Checks if browsers support location
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(sendPosition);
+        navigator.geolocation.getCurrentPosition(sendPosition, errorMessage);
     } else {
-        window.alert("Geolocation is not supported by this browser.");
+    	// Display Browser Support Error
+        $('#loc-no-support').attr("hidden", false); 
     }
+}
+//User denies location request
+function errorMessage() {
+	// Display User Denied Error
+	$('#loc-denied').attr("hidden", false); 
 }
 //sends lat/long to backend
 function sendPosition(position) {
+	// Hides Request Alert
+	$('#loc-notify').attr("hidden", true);
+	// Shows and Starts Load Bar
+	$('.load-page').attr("hidden", false); 
+	var counter= 0;
+	animate(counter);
+
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-
-	// $(document).ajaxSend(function(e, xhr, options) {
-	// 	var token = $("meta[name='csrf-token']").attr("content");
-	// 	xhr.setRequestHeader("X-CSRF-Token", token);
-	// });
 
 	$.ajax({
 		// url:'/food_finder',
@@ -137,13 +146,6 @@ function display(data) {
 		// 	$.Velocity.hook($card, 'translateY', dY + 'px');
 		// });
 	}
-}
-function reject() {
-
-}
-//send info to mapping applcation
-function accept() {
-
 }
 function showCard(businesses, counter) {
 	//load card first
