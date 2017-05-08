@@ -46,8 +46,9 @@ class FoodFindersController < ApplicationController
 			term: term,
 			latitude: lat,
 			longitude: long,
-			radius: 8000,
+			radius: 16000,
 			limit: 50,
+			price: "1,2",
 			open_now: true
 		}
 
@@ -61,7 +62,19 @@ class FoodFindersController < ApplicationController
 	end
 
 	def show
-		@results = search("Restuarant", @@latitude, @@longitude)
+		@restuarant = search("Restuarant", @@latitude, @@longitude)
+		@breakfast = search("Breakfast", @@latitude, @@longitude)
+		@lunch = search("Lunch", @@latitude, @@longitude)
+		@dinner = search("Dinner", @@latitude, @@longitude)
+		@boba = search("Boba", @@latitude, @@longitude)
+
+		@results = {
+			:restuarant => @restuarant,
+			:breakfast => @breakfast,
+			:lunch => @lunch,
+			:dinner => @dinner,
+			:boba => @boba
+		}
 
 		render json: @results
 	end

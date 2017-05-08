@@ -39,7 +39,7 @@ function sendPosition(position) {
 			$.getJSON(Routes.food_finder_path("results", {format: 'json'}), function(data) {
 	  			console.log(data);
 	  			$('.load-page').remove();
-	  			display(data);
+	  			displayManager(data);
 			});
 		},
 		error:function(data){
@@ -67,6 +67,24 @@ function animate(counter) {
 			animate(counter);
 		} 
 	}, 100)
+}
+
+//receives results of multiple searchs from Yelp
+//display manages only one search (restuarant, lunch, etc) 
+//displayManager determines which search to send to display
+function displayManager(results) {
+	//Default Search: Restuarants
+	display(results.restuarant);
+
+	//Display options menu
+	$('#result-option').attr("hidden", false);
+
+	//Listen for change in options menu then change search accordingly
+	var options = document.getElementById('result-option');
+	options.addEventListener('change', function(){
+		//change to new search
+		display(results[options.value]);
+	});
 }
 
 //takes in JSON array, randomly choose a restuarant, displays to user
