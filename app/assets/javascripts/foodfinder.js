@@ -1,19 +1,28 @@
 function getLocation() {
+	// Checks if browsers support location
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(sendPosition);
+        navigator.geolocation.getCurrentPosition(sendPosition, errorMessage);
     } else {
-        window.alert("Geolocation is not supported by this browser.");
+    	// Display Browser Support Error
+        $('#loc-no-support').attr("hidden", false); 
     }
+}
+//User denies location request
+function errorMessage() {
+	// Display User Denied Error
+	$('#loc-denied').attr("hidden", false); 
 }
 //sends lat/long to backend
 function sendPosition(position) {
+	// Hides Request Alert
+	$('#loc-notify').attr("hidden", true);
+	// Shows and Starts Load Bar
+	$('.load-page').attr("hidden", false); 
+	var counter= 0;
+	animate(counter);
+
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-
-	// $(document).ajaxSend(function(e, xhr, options) {
-	// 	var token = $("meta[name='csrf-token']").attr("content");
-	// 	xhr.setRequestHeader("X-CSRF-Token", token);
-	// });
 
 	$.ajax({
 		// url:'/food_finder',
@@ -30,7 +39,7 @@ function sendPosition(position) {
 			$.getJSON(Routes.food_finder_path("results", {format: 'json'}), function(data) {
 	  			console.log(data);
 	  			$('.load-page').remove();
-	  			display(data);
+	  			displayManager(data);
 			});
 		},
 		error:function(data){
@@ -58,6 +67,24 @@ function animate(counter) {
 			animate(counter);
 		} 
 	}, 100)
+}
+
+//receives results of multiple searchs from Yelp
+//display manages only one search (restuarant, lunch, etc) 
+//displayManager determines which search to send to display
+function displayManager(results) {
+	//Default Search: Restuarants
+	display(results.restuarant);
+
+	//Display options menu
+	$('#result-option').attr("hidden", false);
+
+	//Listen for change in options menu then change search accordingly
+	var options = document.getElementById('result-option');
+	options.addEventListener('change', function(){
+		//change to new search
+		display(results[options.value]);
+	});
 }
 
 //takes in JSON array, randomly choose a restuarant, displays to user
@@ -137,13 +164,6 @@ function display(data) {
 		// 	$.Velocity.hook($card, 'translateY', dY + 'px');
 		// });
 	}
-}
-function reject() {
-
-}
-//send info to mapping applcation
-function accept() {
-
 }
 function showCard(businesses, counter) {
 	//load card first
