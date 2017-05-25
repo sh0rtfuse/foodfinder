@@ -63,16 +63,16 @@ class FoodFindersController < ApplicationController
 
 	def show
 		@restuarant = search("Restuarant", @@latitude, @@longitude)
-		@breakfast = search("Breakfast", @@latitude, @@longitude)
-		@lunch = search("Lunch", @@latitude, @@longitude)
-		@dinner = search("Dinner", @@latitude, @@longitude)
+		# @breakfast = search("Breakfast", @@latitude, @@longitude)
+		# @lunch = search("Lunch", @@latitude, @@longitude)
+		# @dinner = search("Dinner", @@latitude, @@longitude)
 		@boba = search("Boba", @@latitude, @@longitude)
 
 		@results = {
 			:restuarant => @restuarant,
-			:breakfast => @breakfast,
-			:lunch => @lunch,
-			:dinner => @dinner,
+			# :breakfast => @breakfast,
+			# :lunch => @lunch,
+			# :dinner => @dinner,
 			:boba => @boba
 		}
 
